@@ -4,8 +4,15 @@ function Container() {
   this.htmlCode = "";
 }
 
+Container.prototype.idItem = 0;
+
 Container.prototype.render = function() {
   return this.htmlCode;
+}
+
+Container.prototype.remove = function() {
+  var el = document.querySelector('#' + this.id);
+  el.parentNode.removeChild(el);
 }
 
 function Menu(myId, myClass, myItems) {
@@ -30,13 +37,9 @@ Menu.prototype.render = function() {
   return result;
 }
 
-Menu.prototype.remove = function() {
-  var el = document.querySelector('#' + this.id);
-  el.parentNode.removeChild(el);
-}
-
 function MenuItem(myHref, myLabel, subMenu='') {
   Container.call(this);
+  this.id = 'menu-item' + ++Container.prototype.idItem;
   this.className = 'menu-item';
   this.href = myHref;
   this.label = myLabel;
@@ -47,5 +50,5 @@ MenuItem.prototype = Object.create(Container.prototype);
 MenuItem.prototype.constructor = MenuItem;
 
 MenuItem.prototype.render = function() {
-  return '<li class="' + this.className + '"><a href="' + this.href + '" >' + this.label + '</a>' + this.submenu + '</li>';
+  return '<li class="' + this.className + '" id="' + this.id + '"><a href="' + this.href + '" >' + this.label + '</a>' + this.submenu + '</li>';
 }
