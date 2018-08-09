@@ -31,21 +31,25 @@ Menu.prototype.constructor = Menu;
 // добавление элементов меню
 Menu.prototype.add = function(el) {
   this.items.push(el);
+  if (this.element) this.element.appendChild(el.render());
 }
 
 // возвращаем меню
 Menu.prototype.render = function(selector) {
-  this.element = document.createElement('ul');
-  this.element.className = this.className;
-  this.element.id = this.id;
-  
-  for(var i = 0; i < this.items.length; i++) {
-    if(this.items[i] instanceof MenuItem) {
-      this.element.appendChild(this.items[i].render());
+  if (!this.element) {
+    this.element = document.createElement('ul');
+    this.element.className = this.className;
+    this.element.id = this.id;
+    for(var i = 0; i < this.items.length; i++) {
+      if(this.items[i] instanceof MenuItem) {
+        this.element.appendChild(this.items[i].render());
+      }
     }
   }
-  
-  if (selector) document.querySelector(selector).appendChild(this.element);
+  if (selector) {
+    document.querySelector(selector).innerHTML = '';
+    document.querySelector(selector).appendChild(this.element);
+  }
   
   return this.element;
 }
