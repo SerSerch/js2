@@ -2,6 +2,11 @@ function Container() {
   this.id = "";
   this.className = "";
   this.element = "";
+  this.child = [];
+}
+
+Container.prototype.add = function(el) {
+  this.child.push(el);
 }
 
 Container.prototype.render = function() {
@@ -13,11 +18,10 @@ Container.prototype.remove = function() {
   el.parentNode.removeChild(el);
 }
 
-function Menu(myId, myClass, myItems) {
+function Menu(myId, myClass) {
   Container.call(this);
   this.id = myId;
   this.className = myClass;
-  this.items = myItems;
 }
 
 Menu.prototype = Object.create(Container.prototype);
@@ -28,9 +32,9 @@ Menu.prototype.render = function() {
   this.element.className = this.className;
   this.element.id = this.id;
   
-  for(var i = 0; i < this.items.length; i++) {
-    if(this.items[i] instanceof MenuItem) {
-      this.element.appendChild(this.items[i].render());
+  for(var i = 0; i < this.child.length; i++) {
+    if(this.child[i] instanceof MenuItem) {
+      this.element.appendChild(this.child[i].render());
     }
   }
   

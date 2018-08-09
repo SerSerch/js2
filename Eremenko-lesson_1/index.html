@@ -4,30 +4,28 @@
     <script src="script.js"></script>
     <script>
       window.onload = function() {
-        var subMenuItem1 = new MenuItem('/js1', 'JS1');
-        var subMenuItem2 = new MenuItem('/js2', 'JS2');
-        var subMenuItem3 = new MenuItem('/react', 'React');
 
-        var subMenu1 = new Menu('submenu1', 'menu', [subMenuItem1, subMenuItem2, subMenuItem3]);
-
-        var subMenuItem4 = new MenuItem('/dom', 'DOM');
-        var subMenuItem5 = new MenuItem('/html', 'HTML');
-        var subMenuItem6 = new MenuItem('/css', 'CSS');
-
-        var subMenu2 = new Menu('submenu2', 'menu', [subMenuItem4, subMenuItem5, subMenuItem6]);
-
-        var menuItem1 = new MenuItem('/', 'Главная');
-        var menuItem2 = new MenuItem('/catalog', 'Каталог', subMenu1.render());
-        var menuItem3 = new MenuItem('/blog', 'Блог', subMenu2.render());
-
-        var menu = new Menu('menu', 'menu', [menuItem1, menuItem2, menuItem3]);
+        var menu = new Menu('menu', 'menu');
         
+        menu.subMenu1 = new Menu('submenu1', 'menu');
+        menu.subMenu1.add(new MenuItem('/js1', 'JS1'));
+        menu.subMenu1.add(new MenuItem('/js2', 'JS2'));
+        menu.subMenu1.add(new MenuItem('/react', 'React'));
+
+        menu.subMenu2 = new Menu('submenu1', 'menu');
+        menu.subMenu2.add(new MenuItem('/dom', 'DOM'));
+        menu.subMenu2.add(new MenuItem('/html', 'HTML'));
+        menu.subMenu2.add(new MenuItem('/css', 'CSS'));
+        
+        
+        menu.add(new MenuItem('/', 'Главная'));
+        menu.add(new MenuItem('/catalog', 'Каталог', menu.subMenu1.render()));
+        menu.add(new MenuItem('/blog', 'Блог', menu.subMenu2.render()));
         
         
         document.querySelector('.nav').appendChild(menu.render());
         
-        subMenu2.remove();
-        
+        menu.subMenu2.remove();
       }
     </script>
   </head>
