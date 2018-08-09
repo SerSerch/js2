@@ -2,11 +2,6 @@ function Container() {
   this.id = "";
   this.className = "";
   this.element = "";
-  this.child = [];
-}
-
-Container.prototype.add = function(el) {
-  this.child.push(el);
 }
 
 Container.prototype.render = function() {
@@ -22,10 +17,15 @@ function Menu(myId, myClass) {
   Container.call(this);
   this.id = myId;
   this.className = myClass;
+  this.child = [];
 }
 
 Menu.prototype = Object.create(Container.prototype);
 Menu.prototype.constructor = Menu;
+
+Menu.prototype.add = function(el) {
+  this.child.push(el);
+}
 
 Menu.prototype.render = function() {
   this.element = document.createElement('ul');
