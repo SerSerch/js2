@@ -20,14 +20,14 @@
         
         
         menu.add(new MenuItem('/', 'Главная'));
-        menu.add(new MenuItem('/catalog', 'Каталог', menu.subMenu1.render()));
-        menu.add(new MenuItem('/blog', 'Блог', menu.subMenu2.render()));
+        menu.add(new MenuItem('/catalog', 'Каталог', menu.subMenu1));
+        menu.add(new MenuItem('/blog', 'Блог', menu.subMenu2));
         
-        
-        document.querySelector('.nav').appendChild(menu.render());
+        menu.render('.nav');
         
         menu.subMenu2.remove();
         menu.subMenu1.items[3].remove();
+        menu.items[0].add(menu.subMenu2);
       }
     </script>
   </head>
