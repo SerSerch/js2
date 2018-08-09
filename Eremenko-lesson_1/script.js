@@ -1,17 +1,15 @@
 function Container() {
   this.id = "";
   this.className = "";
-  this.htmlCode = "";
+  this.element = "";
 }
 
-Container.prototype.idItem = 0;
-
 Container.prototype.render = function() {
-  return this.htmlCode;
+  return this.element;
 }
 
 Container.prototype.remove = function() {
-  var el = document.querySelector('#' + this.id);
+  let el = this.element;
   el.parentNode.removeChild(el);
 }
 
@@ -26,20 +24,21 @@ Menu.prototype = Object.create(Container.prototype);
 Menu.prototype.constructor = Menu;
 
 Menu.prototype.render = function() {
-  var result = '<ul class="' + this.className + '" id="' + this.id + '">';
+  this.element = document.createElement('ul');
+  this.element.className = this.className;
+  this.element.id = this.id;
+  
   for(var i = 0; i < this.items.length; i++) {
     if(this.items[i] instanceof MenuItem) {
-      result += this.items[i].render();
+      this.element.appendChild(this.items[i].render());
     }
   }
-  result += '</ul>';
   
-  return result;
+  return this.element;
 }
 
 function MenuItem(myHref, myLabel, subMenu='') {
   Container.call(this);
-  this.id = 'menu-item' + ++Container.prototype.idItem;
   this.className = 'menu-item';
   this.href = myHref;
   this.label = myLabel;
@@ -50,5 +49,15 @@ MenuItem.prototype = Object.create(Container.prototype);
 MenuItem.prototype.constructor = MenuItem;
 
 MenuItem.prototype.render = function() {
-  return '<li class="' + this.className + '" id="' + this.id + '"><a href="' + this.href + '" >' + this.label + '</a>' + this.submenu + '</li>';
+  this.element = document.createElement('li');
+  this.element.className = this.className;
+  
+  let link = document.createElement('a');
+  link.href = this.href;
+  link.innerHTML = this.label;
+  
+  this.element.appendChild(link);
+  if (this.submenu) this.element.appendChild(this.submenu);
+  
+  return this.element;
 }
