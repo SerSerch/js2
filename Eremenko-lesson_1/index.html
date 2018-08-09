@@ -11,6 +11,7 @@
         menu.subMenu1.add(new MenuItem('/js1', 'JS1'));
         menu.subMenu1.add(new MenuItem('/js2', 'JS2'));
         menu.subMenu1.add(new MenuItem('/react', 'React'));
+        menu.subMenu1.add(new MenuItem('/php', 'PHP'));
 
         menu.subMenu2 = new Menu('submenu1', 'menu');
         menu.subMenu2.add(new MenuItem('/dom', 'DOM'));
@@ -26,6 +27,7 @@
         document.querySelector('.nav').appendChild(menu.render());
         
         menu.subMenu2.remove();
+        menu.subMenu1.child[3].remove();
       }
     </script>
   </head>
