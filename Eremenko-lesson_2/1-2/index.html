@@ -22,7 +22,7 @@
             subItems;
           for (let i = 0; i < myItems.length; i++) {
             menu.add(new MenuItem(myItems[i].href, myItems[i].title));
-
+            
             if (myItems[i].submenu) {
               menu['submenu' + i] = new Menu('submenu' + i, 'menu');
               menu.items[i].add(menu['submenu' + i]);
@@ -31,6 +31,7 @@
                 menu['submenu' + i].add(new MenuItem(subItems.href, subItems.title));
               }
             }
+            
           }
           menu.render('.nav');
         }
