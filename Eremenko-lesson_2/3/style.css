@@ -1,0 +1,12 @@
+img {
+	width: 20%;
+	margin: 5px;
+	box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    border: 5px solid transparent;
+}
+
+img:hover {
+    transform: scale(1.2);
+    border: 5px #fff solid;
+}
