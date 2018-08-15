@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Form</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .row {
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .row__caption {
+      position: absolute;
+      top: 15px;
+      left: 11px;
+      cursor: text;
+    }
+
+    .row__input,
+    .row__text {
+      padding: 5px 10px;
+    }
+
+    .row__input:invalid:not(:focus):not(:placeholder-shown) {
+      background-color: pink;
+    }
+
+
+
+    .row__input:invalid:not(:placeholder-shown)~.row__error::before {
+      display: block;
+      content: attr(data-error);
+    }
+
+    .row__input:valid:not(:placeholder-shown) {
+      background-color: aquamarine;
+    }
+
+    .row__input::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      font-size: 0;
+    }
+
+    .row__input::-moz-placeholder {
+      /* Firefox 19+ */
+      font-size: 0;
+    }
+
+    .row__input:-ms-input-placeholder {
+      /* IE 10+ */
+      font-size: 0;
+    }
+
+    .row__input:-moz-placeholder {
+      /* Firefox 18- */
+      font-size: 0;
+    }
+
+    .row__input:focus+.row__caption,
+    .row__text:focus+.row__caption,
+    .row__input:not(:focus):not(:placeholder-shown)+.row__caption,
+    .row__text:not(:focus):not(:placeholder-shown)+.row__caption {
+      display: none;
+    }
+
+    .row__input:focus::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      font-size: 16px;
+    }
+
+    .row__input:focus::-moz-placeholder {
+      /* Firefox 19+ */
+      display: none;
+    }
+
+    .row__input:focus:-ms-input-placeholder {
+      /* IE 10+ */
+      display: none;
+    }
+
+    .row__input:focus:-moz-placeholder {
+      /* Firefox 18- */
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="#">
+    <div class="row">
+      <input class="row__input" name="name" id="name" type="text" pattern="^[A-Za-zА-Яа-яЁё]{2,}$" placeholder="Имя" required>
+      <label class="row__caption" for="name">Имя</label>
+      <span class="row__error" data-error="Введите Ваше имя только буквами"></span>
+    </div>
+
+    <div class="row">
+      <input class="row__input" name="phone" id="phone" type="tel" pattern="^\+\d\(\d{3}\)\d{3}-\d{4}$" placeholder=" " required>
+      <label class="row__caption" for="phone">Телефон</label>
+      <span class="row__error" data-error="Введите Ваш телефон в формате +7(000)000-0000"></span>
+    </div>
+
+    <div class="row">
+      <input class="row__input" name="email" id="email" type="email" pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' placeholder="my-adres@email.ru" required>
+      <label class="row__caption" for="email">Почта</label>
+      <span class="row__error" data-error="Введите Вашу почту в формате my-adres@email.ru"></span>
+    </div>
+
+    <div class="row">
+      <textarea class="row__text" name="text" id="text" cols="30" rows="10" placeholder=" "></textarea>
+      <label class="row__caption" for="text">Текст</label>
+    </div>
+
+    <div class="row">
+      <input type="submit">
+    </div>
+  </form>
+  
+  <script src="script.js"></script>
+</body>
+</html>
