@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+  <style>
+    .ui-tabs-vertical {
+      width: 100%;
+    }
+
+    .ui-tabs-vertical .ui-tabs-nav {
+      float: left;
+      width: 20%;
+      box-sizing: border-box;
+    }
+
+    .tabs-panel__item {
+      clear: left;
+      width: 100%;
+    }
+
+    .ui-tabs-vertical .ui-tabs-panel {
+      float: right;
+      width: 80%;
+      box-sizing: border-box;
+    }
+
+    .ui-tabs-vertical:after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+
+    .ui-tabs .ui-tabs-nav li a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="tabs1" class="ui-tabs-gorizontal">
+    <ul class="tabs-panel">
+      <li class="tabs-panel__item"><a class="tabs-panel__link" href="#tabs-1">A</a></li>
+      <li class="tabs-panel__item"><a class="tabs-panel__link" href="#tabs-2">B</a></li>
+      <li class="tabs-panel__item"><a class="tabs-panel__link" href="#tabs-3">C</a></li>
+    </ul>
+    <div id="tabs-1">
+      Введите название страны: <input id="country" />
+    </div>
+    <div id="tabs-2">
+      2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ab impedit saepe magni itaque, dolorum iusto harum neque, libero facilis, modi architecto! Optio velit rerum harum, accusantium laboriosam facilis recusandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui sunt, incidunt tempora cupiditate neque totam doloribus voluptate dolores atque saepe quia libero dolorem nemo ducimus hic eveniet debitis illum commodi?
+    </div>
+    <div id="tabs-3">
+      3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus maiores nemo itaque soluta saepe, numquam doloremque nostrum ab, aperiam officia perspiciatis eum in ipsum, eaque commodi cumque est illo aliquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo dignissimos quam quos, quibusdam? Perspiciatis totam eos reprehenderit, magnam placeat quidem at ratione nemo mollitia modi accusantium, voluptas error. Dolore, soluta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum repellendus dolorum voluptates eius officiis illo vitae et, unde culpa soluta aspernatur magni fuga, fugiat ipsum, officia enim. Fuga delectus, mollitia.
+    </div>
+  </div>
+  <div id="tabs2" class="ui-tabs-vertical">
+    <ul class="tabs-panel">
+      <li class="tabs-panel__item"><a class="tabs-panel__link tabs-panel__link_v" class="" href="#tabs-1">A</a></li>
+      <li class="tabs-panel__item"><a class="tabs-panel__link tabs-panel__link_v" href="#tabs-2">B</a></li>
+      <li class="tabs-panel__item"><a class="tabs-panel__link tabs-panel__link_v" href="#tabs-3">C</a></li>
+    </ul>
+    <div id="tabs-1">
+      1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, facere a quae autem enim fuga officia inventore perspiciatis ipsam placeat tempora temporibus voluptatum soluta dolore incidunt nisi cupiditate ab qui.
+    </div>
+    <div id="tabs-2">
+      2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ab impedit saepe magni itaque, dolorum iusto harum neque, libero facilis, modi architecto! Optio velit rerum harum, accusantium laboriosam facilis recusandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui sunt, incidunt tempora cupiditate neque totam doloribus voluptate dolores atque saepe quia libero dolorem nemo ducimus hic eveniet debitis illum commodi?
+    </div>
+    <div id="tabs-3">
+      3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus maiores nemo itaque soluta saepe, numquam doloremque nostrum ab, aperiam officia perspiciatis eum in ipsum, eaque commodi cumque est illo aliquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo dignissimos quam quos, quibusdam? Perspiciatis totam eos reprehenderit, magnam placeat quidem at ratione nemo mollitia modi accusantium, voluptas error. Dolore, soluta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum repellendus dolorum voluptates eius officiis illo vitae et, unde culpa soluta aspernatur magni fuga, fugiat ipsum, officia enim. Fuga delectus, mollitia.
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#tabs1, #tabs2").tabs();
+
+      var country = ["Австралия",
+        "Австрия",
+        "Азербайджан",
+        "Аргентина",
+        "Афганистан",
+        "Бангладеш",
+        "Беларусь",
+        "Бразилия",
+        "Великобритания ",
+        "Вьетнам",
+        "Германия",
+        "Греция",
+        "Грузия",
+        "Дания",
+        "Египет",
+        "Израиль",
+        "Ирак",
+        "Иран",
+        "Испания ",
+        "Италия",
+        "Канада",
+        "КНР",
+        "Куба",
+        "Латвия",
+        "Литва",
+        "Мексика",
+        "Монголия",
+        "Нигерия",
+        "Нидерланды ",
+        "Пакистан",
+        "Польша",
+        "Португалия",
+        "Россия",
+        "Румыния",
+        "Словакия",
+        "Словения",
+        "США",
+        "Таджикистан ",
+        "Таиланд",
+        "Тунис ",
+        "Турция",
+        "Узбекистан",
+        "Украина",
+        "Филиппины",
+        "Финляндия",
+        "Франция",
+        "Хорватия",
+        "Черногория",
+        "Чехия",
+        "Швейцария ",
+        "Швеция",
+        "Эстония",
+        "ЮАР",
+        "Япония"
+      ];
+
+      $("#country").autocomplete({
+        source: country
+      });
+    });
+
+  </script>
+</body>
+
+</html>
