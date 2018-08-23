@@ -8,7 +8,8 @@ function renderComments(element) {
           for (let comment of product.comments) {
             let autor = document.createElement("div");
             autor.classList.add("products__autor");
-            autor.innerText = `${comment.autor}: оценка ${comment.stars}`;
+            autor.innerText = comment.autor;
+            autor.setAttribute("data-likes", comment.likes);
             newEl.appendChild(autor);
             let text = document.createElement("div");
             text.classList.add("products__text");
@@ -55,7 +56,7 @@ function renderProducts(e) {
     let newEl = document.createElement("li");
     newEl.classList.add("products__item");
     newEl.innerText = product.name;
-    newEl.setAttribute("data-star", product.getAverageStars());
+    //newEl.setAttribute("data-star", product.getAverageStars());
     newEl.addEventListener("click", onProduct);
     parentBlock.appendChild(newEl);
   }

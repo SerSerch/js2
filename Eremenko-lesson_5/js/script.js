@@ -7,9 +7,10 @@ const categories = ["Другие", "Рубашки", "Футболки", "Го�
 const products = [];
 
 class Comment {
-  constructor(text, autor, stars) {
+  constructor(text="", autor="user", stars=0) {
     this.text = text;
     this.autor = autor;
+    this.likes = 0;
     this.stars = stars;
   }
 }
@@ -20,17 +21,18 @@ class Product {
     this.category = categories[cat];
     this.id = id;
     this.budget = 0;
-    this.expertStars = 3;
     this.comments = [];
   }
   addComment(text, autor, stars) {
     this.comments.push(new Comment(text, autor, stars));
   }
+  /*
   getAverageStars() {
     let sumStars = 0;
     this.comments.forEach(comment => sumStars += comment.stars);
     return (this.comments.length > 0) ? sumStars / this.comments.length : 0;
   }
+  */
 }
 
 products.push(new Product("Рубашка в клетку", "1001", 1));

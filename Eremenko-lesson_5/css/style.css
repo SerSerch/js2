@@ -52,13 +52,13 @@ body {
   border-bottom: none;
   box-sizing: border-box;
 }
-
+/*
 .products__item::after {
   content: ", оценка " attr(data-star);
   font-size: 16px;
   font-weight: 400;
 }
-
+*/
 .products {
   border-bottom: 1px solid #ddd;
 }
@@ -78,6 +78,10 @@ body {
 .products__autor {
   text-decoration: underline;
   font-weight: 600;
+}
+
+.products__autor::after {
+  content: ": likes " attr(data-likes);
 }
 
 .products__text {
