@@ -69,8 +69,7 @@ class Comment {
       let arg = ['text=' + text];
       httpReq('POST', 'http://89.108.65.123:8080/comments', arg).then(
         response => {
-          this.list.push(response);
-          renderComments();
+          this.getComments();
         },
         error => console.error(error)
       );
@@ -94,7 +93,6 @@ class Comment {
     //DELETE comment_id
     let element = e.currentTarget;
     let arg = ['comment_id=' + element.parentNode.id];
-    console.log(arg);
     httpReq('DELETE', 'http://89.108.65.123:8080/comments', arg).then(
       response => {
         for (let comment in comments.list) {
