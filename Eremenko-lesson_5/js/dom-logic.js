@@ -139,19 +139,5 @@ document.addEventListener('DOMContentLoaded', function () {
       user.addProduct(ui.draggable[0]);
     }
   });
-  let swiper = new Swiper('.swiper-container', {
-    loop: true,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: true,
-    },
-    pagination: {
-      clickable: true,
-      el: '.swiper-pagination',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
+
 });
