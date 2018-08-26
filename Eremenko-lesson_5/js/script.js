@@ -9,7 +9,7 @@ function httpReq(metod, url, arg = '') {
       if (xhr.status == 200) {
         resolve(JSON.parse(xhr.responseText));
       } else {
-        reject(xhr.status + ' ' + xhr.statusText);
+        reject([xhr.status, xhr.statusText, metod, url]);
       }
     };
   });
@@ -29,7 +29,7 @@ class User {
           this.user_id = response.user_id;
           this.cart = [];
         },
-        error => console.error(error)
+        error => errorDialog(error)
       );
     }
   }
@@ -41,7 +41,7 @@ class User {
       response => {
         this.cart = response.cart;
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 
@@ -60,7 +60,7 @@ class User {
         user.cart.push(response);
         getBasket();
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 
@@ -76,7 +76,7 @@ class User {
         element.remove();
         document.querySelector('.dialog b').innerText = user.cart.length;
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 
@@ -97,7 +97,7 @@ class Comment {
         this.list = response;
         renderComments();
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 
@@ -109,7 +109,7 @@ class Comment {
         response => {
           this.getComments();
         },
-        error => console.error(error)
+        error => errorDialog(error)
       );
     }
   }
@@ -123,7 +123,7 @@ class Comment {
       response => {
         element.setAttribute('data-likes', response.likes);
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 
@@ -141,7 +141,7 @@ class Comment {
         }
         element.parentNode.remove();
       },
-      error => console.error(error)
+      error => errorDialog(error)
     );
   }
 }
@@ -167,4 +167,13 @@ function getProductsByCategory(cat) {
     }
   }
   return resProducts;
+}
+
+function errorDialog(error) {
+  $('.dialog').html(`${error[2]}<br>${error[3]}`)
+
+  $('.dialog').dialog({
+    modal: true,
+    title: `Error ${error[0]} ${error[1]}` 
+  }).effect('bounce', {}, 1000);
 }
