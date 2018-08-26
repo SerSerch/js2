@@ -1,3 +1,4 @@
+//асинхронный запрос возвращающий promise
 function httpReq(metod, url, arg = '') {
   return new Promise(function (resolve, reject) {
     url += arg ? '?' + arg.join('&') : '';
@@ -14,6 +15,7 @@ function httpReq(metod, url, arg = '') {
   });
 }
 
+//класс пользователя
 class User {
   constructor(id = '') {
     this.user_id = id;
@@ -42,6 +44,8 @@ class User {
 
 }
 
+
+//класс комментариев
 class Comment {
   constructor() {
     //GET comments
@@ -106,6 +110,8 @@ class Comment {
   }
 }
 
+
+//класс продуктов
 class Product {
   constructor(name = 'Other product', id = '', cat = 0) {
     this.name = name;
@@ -113,16 +119,9 @@ class Product {
     this.id = id;
     this.budget = 0;
   }
-
-  /*
-  getAverageStars() {
-    let sumStars = 0;
-    this.comments.forEach(comment => sumStars += comment.stars);
-    return (this.comments.length > 0) ? sumStars / this.comments.length : 0;
-  }
-  */
 }
 
+//получение продуктов в категории
 function getProductsByCategory(cat) {
   const resProducts = [];
   for (let product of products) {

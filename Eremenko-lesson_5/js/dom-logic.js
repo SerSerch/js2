@@ -1,20 +1,24 @@
+//создаем категории
 const categories = ['Другие', 'Рубашки', 'Футболки', 'Гольфы', 'Свитеры'];
-const products = [];
+//добавляем отзывы
 const comments = new Comment();
+//добавляем товары в категории
+const products = [];
 
 products.push(new Product('Рубашка в клетку', '1001', 1));
 products.push(new Product('Рубашка в полоску', '1002', 1));
-
 products.push(new Product('Футболка синяя', '2001', 2));
 products.push(new Product('Гольф с тигром', '3001', 3));
 products.push(new Product('Свитер с оленями', '4001', 4));
 products.push(new Product('Свитер в клетку', '4002', 4));
 products.push(new Product('Борцовка красная', '0001'));
 
+//рендер отзывов
 function renderComments() {
   let commentBlock = document.querySelector('.comments');
   commentBlock.innerHTML = '';
-
+  
+  //блок добавления комментария
   let newEl = document.createElement('li');
   newEl.classList.add('comments__item');
 
@@ -32,7 +36,8 @@ function renderComments() {
   });
   newEl.appendChild(newComment);
   commentBlock.appendChild(newEl);
-
+  
+  //добавляем комментарии в блок
   for (let comment of comments.list) {
     let newEl = document.createElement('li');
     newEl.classList.add('comments__item');
@@ -60,22 +65,8 @@ function renderComments() {
     commentBlock.appendChild(newEl);
   }
 }
-/*
-function onProduct(e) {
-  let element = e.currentTarget;
-  let commentsEl = element.nextElementSibling;
-  if (commentsEl && commentsEl.classList.contains('products__comment')) {
-    if (commentsEl.classList.contains('_active')) {
-      commentsEl.classList.remove('_active');
-    } else {
-      commentsEl.classList.add('_active');
-    }
-  } else {
-    renderComments(element);
-  }
 
-}
-*/
+//рендер продуктов
 function renderProducts(e) {
   let active = document.querySelector('.categories__item._active');
   active ? active.classList.remove('_active') : '';
@@ -94,6 +85,7 @@ function renderProducts(e) {
   }
 }
 
+//рендер категорий
 function renderCategories() {
   for (let cat of categories) {
     let newEl = document.createElement('li');
@@ -109,6 +101,7 @@ function renderCategories() {
   document.querySelector('.categories').appendChild(newEl);
 }
 
+//отображение корзины
 function getBasket() {
   alert('Корзина');
 }
