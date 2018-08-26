@@ -80,7 +80,10 @@ function renderProducts(e) {
     newEl.classList.add('products__item', 'drag');
     newEl.setAttribute('data-price', product.price);
     newEl.innerText = product.name;
-    //newEl.addEventListener('click', user.addProduct);
+    newEl.addEventListener('click', function(e) {
+      let element = e.currentTarget;
+      user.addProduct(element);
+    });
     parentBlock.appendChild(newEl);
   }
   $('.drag').draggable({
@@ -130,6 +133,7 @@ function getBasket() {
 
 document.addEventListener('DOMContentLoaded', function () {
   renderCategories();
+  /*
   $('#basket').droppable({
     accept: '.drag',
     hoverClass: 'drags',
@@ -139,5 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
       user.addProduct(ui.draggable[0]);
     }
   });
+  */
 
 });
