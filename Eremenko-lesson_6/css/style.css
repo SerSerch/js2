@@ -29,6 +29,30 @@ body {
   background-color: #fff;
 }
 
+.dialog__basket {
+  padding: 0;
+  margin: 10px 0;
+  list-style: none;
+}
+
+.dialog__item {
+  position: relative;
+  padding: 0 0 0 15px;
+}
+
+.dialog__item:hover {
+  color: crimson;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dialog__item:hover::before {
+  display: block;
+  position: absolute;
+  left: 0;
+  content: 'x';
+}
+
 .drags {
   background-color: pink;
 }
@@ -72,6 +96,7 @@ body {
 }
 
 .products__item {
+  position: relative;
   display: block;
   margin-bottom: -1px;
   padding: 10px;
@@ -79,6 +104,14 @@ body {
   font-weight: 700;
   border: 1px solid #ddd;
   box-sizing: border-box;
+}
+
+.products__item::after {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  content: attr(data-price) " p";
 }
 
 .comments__item {
@@ -108,6 +141,12 @@ body {
   padding-left: 5px;
 }
 
+.comments__add-comment:hover {
+  background-color: aquamarine;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
 .comments__remove-comment {
   width: 15px;
   height: 15px;
@@ -117,6 +156,12 @@ body {
   padding: 0;
   border: 1px solid #000;
   box-sizing: border-box;
+}
+
+.comments__remove-comment:hover {
+  color: #fff;
+  background-color: crimson;
+  cursor: pointer;
 }
 
 .categories__item:hover,
