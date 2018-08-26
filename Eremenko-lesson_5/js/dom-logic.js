@@ -14,7 +14,7 @@ products.push(new Product('Свитер в клетку', 95, '4002', 4));
 products.push(new Product('Борцовка красная', 100, '0001'));
 
 const user = new User();
-console.log(user.user_id);
+document.querySelector('.user').innerText = `Username: ${user.user_id}`;
 
 //рендер отзывов
 function renderComments() {
@@ -71,9 +71,6 @@ function renderComments() {
 
 //рендер продуктов
 function renderProducts(e) {
-  let active = document.querySelector('.categories__item._active');
-  active ? active.classList.remove('_active') : '';
-  e.currentTarget.classList.add('_active');
   let cat = e.currentTarget.innerText;
   let parentBlock = document.querySelector('.products');
   parentBlock.innerHTML = '';
