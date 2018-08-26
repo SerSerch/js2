@@ -5,13 +5,16 @@ const comments = new Comment();
 //добавляем товары в категории
 const products = [];
 
-products.push(new Product('Рубашка в клетку', '1001', 1));
-products.push(new Product('Рубашка в полоску', '1002', 1));
-products.push(new Product('Футболка синяя', '2001', 2));
-products.push(new Product('Гольф с тигром', '3001', 3));
-products.push(new Product('Свитер с оленями', '4001', 4));
-products.push(new Product('Свитер в клетку', '4002', 4));
-products.push(new Product('Борцовка красная', '0001'));
+products.push(new Product('Рубашка в клетку', 50, '1001', 1));
+products.push(new Product('Рубашка в полоску', 60, '1002', 1));
+products.push(new Product('Футболка синяя', 70, '2001', 2));
+products.push(new Product('Гольф с тигром', 80, '3001', 3));
+products.push(new Product('Свитер с оленями', 90, '4001', 4));
+products.push(new Product('Свитер в клетку', 95, '4002', 4));
+products.push(new Product('Борцовка красная', 100, '0001'));
+
+const user = new User();
+console.log(user.user_id);
 
 //рендер отзывов
 function renderComments() {
@@ -78,9 +81,9 @@ function renderProducts(e) {
   for (let product of products) {
     let newEl = document.createElement('li');
     newEl.classList.add('products__item');
+    newEl.setAttribute('data-price', product.price);
     newEl.innerText = product.name;
-    //newEl.setAttribute('data-star', product.getAverageStars());
-    //newEl.addEventListener('click', onProduct);
+    newEl.addEventListener('click', user.addProduct);
     parentBlock.appendChild(newEl);
   }
 }
@@ -103,7 +106,7 @@ function renderCategories() {
 
 //отображение корзины
 function getBasket() {
-  alert('Корзина');
+  console.log(user.cart);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

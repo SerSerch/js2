@@ -17,29 +17,70 @@ function httpReq(metod, url, arg = '') {
 
 //класс пользователя
 class User {
-  constructor(id = '') {
-    this.user_id = id;
-    this.cart = [];
-    this.products = [];
-    this.getUserShop(id);
+  constructor() {
+    let id = localStorage.user ? localStorage.user : '';
+    if (id) {
+      this.user_id = id;
+      this.getUserCart();
+    } else {
+      httpReq('GET', 'http://89.108.65.123:8080/shop').then(
+        response => {
+          localStorage.user = response.user_id;
+          this.user_id = response.user_id;
+          this.cart = [];
+        },
+        error => console.error(error)
+      );
+    }
   }
 
-  getUserShop(id) {
+  getUserCart() {
     //GET user_id
-
+    let arg = ['user_id=' + this.user_id];
+    httpReq('GET', 'http://89.108.65.123:8080/shop', arg).then(
+      response => {
+        this.cart = response.cart;
+      },
+      error => console.error(error)
+    );
   }
 
-  addProduct(product, price) {
+  addProduct(e) {
     //POST user_id
     //product
     //price
+    let element = e.currentTarget;
+    let product = element.innerText;
+    let price = element.getAttribute('data-price');
 
+    let arg = ['user_id=' + user.user_id,
+              'product=' + product,
+              'price=' + price];
+    httpReq('POST', 'http://89.108.65.123:8080/shop', arg).then(
+      response => {
+        user.cart.push(response);
+      },
+      error => console.error(error)
+    );
+    console.log('ok');
   }
 
   deleteProduct(id) {
     //DELETE user_id
     //product_id
-
+    let arg = ['user_id=' + user.user_id,
+              'product_id=' + id];
+    httpReq('POST', 'http://89.108.65.123:8080/shop', arg).then(
+      response => {
+        for (let product in user.cart) {
+          if (user.cart[product].product_id == response.product_id) {
+            user.cart.splice(product, 1);
+            break;
+          }
+        }
+      },
+      error => console.error(error)
+    );
   }
 
 }
@@ -111,8 +152,9 @@ class Comment {
 
 //класс продуктов
 class Product {
-  constructor(name = 'Other product', id = '', cat = 0) {
+  constructor(name = 'Other product', price = 0, id = '', cat = 0) {
     this.name = name;
+    this.price = price;
     this.category = categories[cat];
     this.id = id;
     this.budget = 0;
