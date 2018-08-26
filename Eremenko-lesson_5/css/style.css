@@ -13,7 +13,22 @@ body {
   margin: 10px 0;
 }
 
+.dialog {
+  display: none;
+}
+
+.basket {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+}
+
+.drags {
+  background-color: pink;
+}
+
 .categories {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

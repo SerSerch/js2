@@ -20,7 +20,7 @@ document.querySelector('.user').innerText = `Username: ${user.user_id}`;
 function renderComments() {
   let commentBlock = document.querySelector('.comments');
   commentBlock.innerHTML = '';
-  
+
   //блок добавления комментария
   let newEl = document.createElement('li');
   newEl.classList.add('comments__item');
@@ -39,7 +39,7 @@ function renderComments() {
   });
   newEl.appendChild(newComment);
   commentBlock.appendChild(newEl);
-  
+
   //добавляем комментарии в блок
   for (let comment of comments.list) {
     let newEl = document.createElement('li');
@@ -77,12 +77,15 @@ function renderProducts(e) {
   let products = getProductsByCategory(cat);
   for (let product of products) {
     let newEl = document.createElement('li');
-    newEl.classList.add('products__item');
+    newEl.classList.add('products__item', 'drag');
     newEl.setAttribute('data-price', product.price);
     newEl.innerText = product.name;
-    newEl.addEventListener('click', user.addProduct);
+    //newEl.addEventListener('click', user.addProduct);
     parentBlock.appendChild(newEl);
   }
+  $('.drag').draggable({
+    revert: true
+  });
 }
 
 //рендер категорий
@@ -96,6 +99,7 @@ function renderCategories() {
   }
   let newEl = document.createElement('li');
   newEl.classList.add('categories__item');
+  newEl.id = 'basket';
   newEl.innerText = 'Корзина';
   newEl.addEventListener('click', getBasket);
   document.querySelector('.categories').appendChild(newEl);
@@ -103,9 +107,36 @@ function renderCategories() {
 
 //отображение корзины
 function getBasket() {
-  console.log(user.cart);
+  let basket = document.createElement('ul');
+  basket.classList.add('dialog__basket');
+
+  for (let product of user.cart) {
+    let newEl = document.createElement('li');
+    newEl.classList.add('dialog__item');
+    newEl.id = product.product_id;
+    newEl.innerText = product.product;
+    newEl.setAttribute('data-price', product.price);
+    newEl.addEventListener('click', user.deleteProduct);
+    basket.appendChild(newEl);
+  }
+  
+  $('.dialog').html('В корзине <b>' + user.cart.length + '</b> товаров').append(basket);
+
+  $('.dialog').dialog({
+    modal: true,
+    title: 'Корзина'
+  }).effect('bounce', {}, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   renderCategories();
+  $('#basket').droppable({
+    accept: '.drag',
+    hoverClass: 'drags',
+    activeClass: 'basket'
+  }, {
+    drop: function (event, ui) {
+      user.addProduct(ui.draggable[0]);
+    }
+  });
 });

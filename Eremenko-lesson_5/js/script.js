@@ -45,13 +45,12 @@ class User {
     );
   }
 
-  addProduct(e) {
+  addProduct(elem) {
     //POST user_id
     //product
     //price
-    let element = e.currentTarget;
-    let product = element.innerText;
-    let price = element.getAttribute('data-price');
+    let product = elem.innerText;
+    let price = elem.getAttribute('data-price');
 
     let arg = ['user_id=' + user.user_id,
               'product=' + product,
@@ -59,24 +58,23 @@ class User {
     httpReq('POST', 'http://89.108.65.123:8080/shop', arg).then(
       response => {
         user.cart.push(response);
+        getBasket();
       },
       error => console.error(error)
     );
   }
 
-  deleteProduct(id) {
+  deleteProduct(e) {
     //DELETE user_id
     //product_id
+    let element = e.currentTarget;
     let arg = ['user_id=' + user.user_id,
-              'product_id=' + id];
-    httpReq('POST', 'http://89.108.65.123:8080/shop', arg).then(
+              'product_id=' + element.id];
+    httpReq('DELETE', 'http://89.108.65.123:8080/shop', arg).then(
       response => {
-        for (let product in user.cart) {
-          if (user.cart[product].product_id == response.product_id) {
-            user.cart.splice(product, 1);
-            break;
-          }
-        }
+        user.cart = response.cart;
+        element.remove();
+        document.querySelector('.dialog b').innerText = user.cart.length;
       },
       error => console.error(error)
     );
