@@ -53,33 +53,12 @@ body {
   border: 1px solid #ddd;
   box-sizing: border-box;
 }
-/*
-.products__item::after {
-  content: ", оценка " attr(data-star);
-  font-size: 16px;
-  font-weight: 400;
-}
 
-.products {
-  border-bottom: 1px solid #ddd;
-}
-
-.products__comment {
-  display: none;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  padding: 5px 10px 5px 25px;
-  box-sizing: border-box;
-}
-
-.products__comment._active {
-  display: block;
-}
-*/
 .comments__item {
+  position: relative;
   display: block;
   margin-bottom: -1px;
-  padding: 10px;
+  padding: 10px 30px 10px 10px;
   border: 1px solid #ddd;
   box-sizing: border-box;
 }
@@ -89,12 +68,28 @@ body {
   font-weight: 600;
 }
 
+.comments__autor:hover {
+  color: crimson;
+  cursor: pointer;
+}
+
 .comments__autor::after {
   content: ": likes " attr(data-likes);
 }
 
 .comments__text {
   padding-left: 5px;
+}
+
+.comments__remove-comment {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  border: 1px solid #000;
+  box-sizing: border-box;
 }
 
 .categories__item:hover,
