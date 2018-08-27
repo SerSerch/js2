@@ -28,7 +28,15 @@ function renderComments() {
   let text = document.createElement('input');
   text.classList.add('comments__add-text');
   text.type = 'text';
+  text.setAttribute('placeholder', 'Текст');
   newEl.appendChild(text);
+  
+  let data = document.createElement('input');
+  data.classList.add('comments__add-data');
+  data.id = 'datepicker';
+  data.type = 'text';
+  data.setAttribute('placeholder', 'Дата');
+  newEl.appendChild(data);
 
   let newComment = document.createElement('input');
   newComment.classList.add('comments__add-comment');
@@ -38,6 +46,7 @@ function renderComments() {
     comments.addComment(document.querySelector('.comments__add-text').value);
   });
   newEl.appendChild(newComment);
+  
   commentBlock.appendChild(newEl);
 
   //добавляем комментарии в блок
@@ -67,6 +76,7 @@ function renderComments() {
 
     commentBlock.appendChild(newEl);
   }
+  $("#datepicker").datepicker();
 }
 
 //рендер продуктов
@@ -139,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
       user.addProduct(ui.draggable[0]);
     }
   });
+  
   let swiper = new Swiper('.swiper-container', {
     loop: true,
     autoplay: {

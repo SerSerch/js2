@@ -141,6 +141,15 @@ body {
   padding-left: 5px;
 }
 
+.comments__add-data {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.comments__add-comment {
+  margin-left: 10px;
+}
+
 .comments__add-comment:hover {
   background-color: aquamarine;
   border: 1px solid #000;
