@@ -1,0 +1,205 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background-color: #efefef;
+}
+
+.section {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.user {
+  padding: 10px;
+  background-color: #fff;
+  margin: 10px 0;
+}
+
+.dialog {
+  display: none;
+}
+
+.basket {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+}
+
+.dialog__basket {
+  padding: 0;
+  margin: 10px 0;
+  list-style: none;
+}
+
+.dialog__item {
+  position: relative;
+  padding: 0 0 0 15px;
+}
+
+.dialog__item:hover {
+  color: crimson;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dialog__item:hover::before {
+  display: block;
+  position: absolute;
+  left: 0;
+  content: 'x';
+}
+
+.drags {
+  background-color: pink;
+}
+
+.categories {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fff;
+}
+
+.categories__item {
+  display: block;
+  padding: 1px 11px;
+  margin: 0;
+  flex-grow: 1;
+  line-height: 50px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.categories__item._active {
+  background-color: #e7e7e7;
+  border: 1px solid #ddd;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+
+.products,
+.comments {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 10px 0 0 0;
+  list-style: none;
+  background-color: #fff;
+}
+
+.products__item {
+  position: relative;
+  display: block;
+  margin-bottom: -1px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.products__item::after {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  content: attr(data-price) " p";
+}
+
+.comments__item {
+  position: relative;
+  display: block;
+  margin-bottom: -1px;
+  padding: 10px 30px 10px 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.comments__autor {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.comments__autor:hover {
+  color: crimson;
+  cursor: pointer;
+}
+
+.comments__autor::after {
+  content: ": likes " attr(data-likes);
+}
+
+.comments__text {
+  padding-left: 5px;
+}
+
+.comments__add-data {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.comments__add-comment {
+  margin-left: 10px;
+}
+
+.comments__add-comment:hover {
+  background-color: aquamarine;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.comments__remove-comment {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.comments__remove-comment:hover {
+  color: #fff;
+  background-color: crimson;
+  cursor: pointer;
+}
+
+.categories__item:hover,
+.products__item:hover {
+  background-color: rgba(221, 221, 230, 0.5);
+  cursor: pointer;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
