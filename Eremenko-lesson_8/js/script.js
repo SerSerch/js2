@@ -64,16 +64,15 @@ class User {
     );
   }
 
-  deleteProduct(e) {
+  deleteProduct(elem) {
     //DELETE user_id
     //product_id
-    let element = e.currentTarget;
     let arg = ['user_id=' + user.user_id,
-              'product_id=' + element.id];
+              'product_id=' + elem.id];
     httpReq('DELETE', 'http://89.108.65.123:8080/shop', arg).then(
       response => {
         user.cart = response.cart;
-        element.remove();
+        elem.remove();
         document.querySelector('.dialog b').innerText = user.cart.length;
       },
       error => errorDialog(error)
