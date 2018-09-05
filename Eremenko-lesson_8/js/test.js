@@ -48,19 +48,13 @@ describe('При удалении товара из корзины', function ()
     elem.innerText = "Рубашка";
 
     user.addProduct(elem);
-    user.deleteProduct(15, 1500);
-  });
-
-  it('Должно уменьшиться общее число товаров в корзине', function () {
-    expect(basket.countGoods).toBe(1);
-  });
-
-  it('Должна уменьшиться общая стоимость корзины', function () {
-    expect(basket.amount).toBe(3000);
+    elem.id = user.cart[0].product_id;
+    
+    user.deleteProduct(elem);
   });
 
   it('Должна уменьшиться длина массива basketItems', function () {
-    expect(basket.basketItems.length).toBe(1);
+    expect(user.cart.length).toBe(0);
   });
 
 });
