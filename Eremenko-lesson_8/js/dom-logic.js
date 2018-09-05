@@ -126,7 +126,7 @@ function getBasket() {
     newEl.id = product.product_id;
     newEl.innerText = product.product;
     newEl.setAttribute('data-price', product.price);
-    newEl.addEventListener('click', user.deleteProduct);
+    newEl.addEventListener('click', function(e) {user.deleteProduct(e.currentTarget)});
     basket.appendChild(newEl);
   }
 
